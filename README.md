@@ -6,7 +6,7 @@ Official repository for the lab sessions of the course of Machine Learning (Ac. 
 Make sure to install properly ``python >3.7`` on your device. Then, execute the following installation wth pip:
 
 ```
-pip install numpy scipy matplotlib sklearn pandas
+pip install numpy scipy matplotlib sklearn pandas seaborn
 ```
 ```
 pip install jupyter
