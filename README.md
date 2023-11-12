@@ -1,5 +1,5 @@
 # Machine Learning for CS and AIS
-Official repository for the lab sessions of the course of Machine Learning (Acc. year 2023/2024), taught by Prof. Andrea Passerini (University of Trento).
+Official repository for the lab sessions of the course of Machine Learning (Ac. year 2023/2024), taught by Prof. Andrea Passerini (University of Trento).
 
 ## Getting started
 
