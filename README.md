@@ -21,3 +21,7 @@ jupyter notebook
 ```
 
 Make sure everything works as proper (sklearn must be updated to the latest version), otherwise for bugs and other fixes contact me.
+
+## Pytorch notebook
+
+We will make use of Google Colab to run the notebook in the folder ``./pytorch``. All dependencies must be installed on the colab notebook.
