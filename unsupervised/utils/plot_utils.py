@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import matplotlib as mpl
-
+from matplotlib.patches import Ellipse
 from sklearn import datasets
 
 
@@ -39,6 +39,74 @@ def plot_pca_clusters(X_pca, y, dimensions=False):
             plt.scatter(i[:, 0],i[:,1],label=f"Wine Type {k}")
     plt.legend()
     plt.show()
+
+
+def plot_kmeans_decision_boundaries(X, kmeans_model):
+    """
+    Plot the decision boundaries (contours) of a KMeans model.
+
+    Parameters:
+    - X (numpy array): Input data for clustering.
+    - kmeans_model: Fitted KMeans model.
+    """
+    # Step size of the meshgrid
+    h = 0.02
+
+    # Plot the decision boundary
+    x_min, x_max = X[:, 0].min() - 1, X[:, 0].max() + 1
+    y_min, y_max = X[:, 1].min() - 1, X[:, 1].max() + 1
+    xx, yy = np.meshgrid(np.arange(x_min, x_max, h), np.arange(y_min, y_max, h))
+
+    # Get predicted labels for each point in the meshgrid
+    Z = kmeans_model.predict(np.c_[xx.ravel(), yy.ravel()])
+
+    # Put the result into a color plot
+    Z = Z.reshape(xx.shape)
+
+    plt.figure(figsize=(5, 5))
+    plt.contourf(xx, yy, Z, cmap=plt.cm.rainbow, alpha=0.3)
+
+    # Plot the data points
+    plt.scatter(X[:, 0], X[:, 1], c=kmeans_model.labels_, cmap=plt.cm.rainbow, edgecolor='k', s=40)
+    
+    # Plot the cluster centers
+    plt.scatter(kmeans_model.cluster_centers_[:, 0], kmeans_model.cluster_centers_[:, 1], marker='x', s=200, linewidths=3, color='black')
+
+    plt.title("KMeans Decision Boundaries")
+    plt.xlabel("X1")
+    plt.ylabel("X2")
+    plt.show()
+
+
+def plot_cov_ellipse(cov, pos, nstd=2, ax=None, **kwargs):
+    """
+    Plot an ellipse for a given covariance matrix and position.
+
+    Parameters:
+        - cov: Covariance matrix.
+        - pos: Position (mean) of the ellipse.
+        - nstd: The radius of the ellipse in terms of standard deviations.
+        - ax: Matplotlib axes on which to plot the ellipse.
+        - **kwargs: Additional keyword arguments for matplotlib.patches.Ellipse.
+    """
+    if ax is None:
+        ax = plt.gca()
+
+    # Calculate ellipse parameters
+    v, w = np.linalg.eigh(cov)
+    v = 2.0 * np.sqrt(2.0) * np.sqrt(v)
+    u = w[0] / np.linalg.norm(w[0])
+
+    # Calculate ellipse angle and center
+    angle = np.arctan(u[1] / u[0])
+    angle = 180.0 * angle / np.pi
+    center = pos
+
+    # Create and plot the ellipse
+    ell = Ellipse(xy=center, width=v[0] * nstd, height=v[1] * nstd, angle=angle, **kwargs)
+    ax.add_patch(ell)
+
+    return ell
 
 def make_ellipses(gmm, ax):
     colors = ["navy", "turquoise", "darkorange"]
