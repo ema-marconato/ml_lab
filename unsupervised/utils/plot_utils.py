@@ -18,6 +18,28 @@ def plot_blobs(X, labels_true):
     plt.ylabel('x2')
     plt.legend()
 
+def plot_pca_clusters(X_pca, y, dimensions=False):
+    fig = plt.figure()
+
+    def create_cluster_dict(pred, X):
+        tmp = {}
+        for c, x in zip(pred, X):
+            tmp.update({c: tmp.get(c, [])+[x]})
+        return tmp
+
+    clusters = create_cluster_dict(y, X_pca)
+    if dimensions:
+        ax = fig.add_subplot(projection="3d")
+    c = 1
+    for k, i in clusters.items():
+        i = np.array(i)
+        if dimensions:
+            ax.scatter(i[:, 0], i[:, 1], i[:, 2], label=f"Wine Type {k}")
+        else:
+            plt.scatter(i[:, 0],i[:,1],label=f"Wine Type {k}")
+    plt.legend()
+    plt.show()
+
 def make_ellipses(gmm, ax):
     colors = ["navy", "turquoise", "darkorange"]
 
