@@ -25,3 +25,11 @@ Make sure everything works as proper (sklearn must be updated to the latest vers
 ## Pytorch notebook
 
 We will make use of Google Colab to run the notebook in the folder ``./pytorch``. All dependencies must be installed on the colab notebook.
+
+## Unsupervised learning with sklearn
+
+We will make use again of `sklearn` for unsupervised learning. All materials can be found in the folder `./unsupervised`. Change directory and launch:
+
+```
+jupyter notebook unsupervised-lab.ipynb
+```
