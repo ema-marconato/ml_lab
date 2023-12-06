@@ -33,3 +33,9 @@ We will make use again of `sklearn` for unsupervised learning. All materials can
 ```
 jupyter notebook unsupervised-lab.ipynb
 ```
+
+## Reinforcement Learning
+The notebook can be run directly from Google Colab. However, if you want to run it locally, make sure to install the Gymnasium dependency:
+```
+pip install gymnasium
+```
