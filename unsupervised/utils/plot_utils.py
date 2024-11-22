@@ -70,7 +70,7 @@ def plot_kmeans_decision_boundaries(X, kmeans_model):
     plt.scatter(X[:, 0], X[:, 1], c=kmeans_model.labels_, cmap=plt.cm.rainbow, edgecolor='k', s=40)
     
     # Plot the cluster centers
-    plt.scatter(kmeans_model.cluster_centers_[:, 0], kmeans_model.cluster_centers_[:, 1], marker='x', s=200, linewidths=3, color='black')
+    plt.scatter(kmeans_model.cluster_centers_[:, 0], kmeans_model.cluster_centers_[:, 1], marker='x', s=200, linewidths=3, color='yellow')
 
     plt.title("KMeans Decision Boundaries")
     plt.xlabel("X1")
